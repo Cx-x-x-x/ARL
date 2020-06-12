@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="python@bf1d9d5e-6eb5-485b-a3ac-b0f5cd206649" />
+        <remote-mappings server-id="python@sftp://chenxin@202.38.214.50:8888/home/chenxin/anaconda3/envs/chenxin5/bin/python3.6">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$" remote-root="/Disk1/chenxin/ARL" />
+            </list>
+          </settings>
+        </remote-mappings>
+      </list>
+    </list>
+  </component>
+</project>
