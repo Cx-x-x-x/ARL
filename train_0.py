@@ -36,8 +36,7 @@ train_transform = transforms.Compose([transforms.Resize((224, 224)),
                                       transforms.RandomVerticalFlip(),
                                       transforms.RandomRotation(45),
                                       transforms.ToTensor(),
-                                      transforms.Normalize([0.72033167, 0.4602297, 0.38352215], [0.22272113, 0.19686753, 0.19163243]),
-                                      ])
+                                      transforms.Normalize([0.72033167, 0.4602297, 0.38352215], [0.22272113, 0.19686753, 0.19163243])])
 test_transform = transforms.Compose([transforms.Resize((224, 224)),
                                      transforms.ToTensor(),
                                      transforms.Normalize([0.72033167, 0.4602297, 0.38352215], [0.22272113, 0.19686753, 0.19163243])])
@@ -57,19 +56,19 @@ model = ARL(block, layers, add_dropout=dropout).to(device)
 # fc_feature = model.fc.in_features
 # model.fc = nn.Linear(fc_feature, 3).to(device)
 
-# initialize factor
-for name, param in model.named_parameters():
-    if 'factor' in name:
-        torch.nn.init.constant_(param, factor_init)
-        # print(param)
-
-# # todo pthfile
+# load path
 model_dict = model.state_dict()
 pretrained_dict = torch.load(pthfile)
 pretrained_dict = {k: v for k, v in pretrained_dict.items() if 'fc' not in k}
 model_dict.update(pretrained_dict)
 model.load_state_dict(model_dict, strict=True)
 
+
+# initialize factor
+for name, param in model.named_parameters():
+    if 'factor' in name:
+        torch.nn.init.constant_(param, factor_init)
+        # print(param)
 
 # Loss
 criterion = nn.CrossEntropyLoss()
