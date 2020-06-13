@@ -2,7 +2,7 @@ import torch
 # from tensorboardX import SummaryWriter
 from torch.utils.tensorboard import SummaryWriter
 
-from basic import ARL, BasicBlock
+from arl_basic import ARL, BasicBlock
 from torch import nn
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
