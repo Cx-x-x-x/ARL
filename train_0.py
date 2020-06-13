@@ -17,6 +17,7 @@ from config_0 import device, SaveFreq, save_dir, pthfile, block, layers, dropout
 from filter_weight_decay import group_weight
 
 from tensorboardX import SummaryWriter
+
 writer = SummaryWriter('/Disk1/chenxin/runs/' + tensorboard_dir)
 
 start = time.time()
@@ -52,9 +53,6 @@ test_loader = DataLoader(dataset=test_dataset, batch_size=BatchSize,
 
 # todo load the model
 model = ARL(block, layers, add_dropout=dropout).to(device)
-# model = torchvision.models.googlenet(pretrained=True).to(device)
-# fc_feature = model.fc.in_features
-# model.fc = nn.Linear(fc_feature, 3).to(device)
 
 # load path
 model_dict = model.state_dict()

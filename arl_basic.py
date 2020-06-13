@@ -58,6 +58,7 @@ class BasicBlock(nn.Module):
 
         return out
 
+
 class ARL(nn.Module):
 
     def __init__(self, block, layers, num_classes=3, zero_init_residual=False,
