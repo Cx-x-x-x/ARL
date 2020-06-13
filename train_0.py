@@ -12,7 +12,7 @@ from torch import nn
 from torch import optim
 
 from arl_0 import ARL
-from config_0 import save_dir, pthfile, block, layers, dropout, \
+from config_0 import device, save_dir, pthfile, block, layers, dropout, \
     Epoch, BatchSize, Optimizer, lr, wd, factor_init, tensorboard_dir
 from filter_weight_decay import group_weight
 
@@ -20,7 +20,7 @@ from tensorboardX import SummaryWriter
 writer = SummaryWriter('/Disk1/chenxin/runs/' + tensorboard_dir)
 
 start = time.time()
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
 
 # 参数设置,使得我们能够手动输入命令行参数，就是让风格变得和Linux命令行差不多
 parser = argparse.ArgumentParser(description='PyTorch Training')

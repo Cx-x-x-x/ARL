@@ -1,4 +1,7 @@
+import torch
 from arl_0 import Block, BasicBlock
+
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 save_dir = 'model_115/'
 tensorboard_dir = '115/'
