@@ -12,7 +12,7 @@ from torch import nn
 from torch import optim
 
 from arl_0 import ARL
-from config_0 import device, save_dir, pthfile, block, layers, dropout, \
+from config_0 import device, SaveFreq, save_dir, pthfile, block, layers, dropout, \
     Epoch, BatchSize, Optimizer, lr, wd, factor_init, tensorboard_dir
 from filter_weight_decay import group_weight
 
@@ -73,7 +73,7 @@ for name, param in model.named_parameters():
 # Loss
 criterion = nn.CrossEntropyLoss()
 
-# todo Optimizer
+# optimizer
 parameters = group_weight(model)  # avoid to decay the weight of BN
 if Optimizer == 'adam':
     optimizer = optim.Adam(parameters, lr=lr, weight_decay=wd)
@@ -160,10 +160,9 @@ if __name__ == "__main__":
                 acc = 100. * correct / total
                 print('测试分类准确率为：%.3f%%' % (acc))
 
-                # todo 保存模型 10 epoch
-                # if (epoch + 1) % 5 == 0:
-                print('Saving model......')
-                torch.save(model.state_dict(), '%s/net_%03d.pth' % (args.outf, epoch + 1))
+                if (epoch + 1) % SaveFreq == 0:
+                    print('Saving model......')
+                    torch.save(model.state_dict(), '%s/net_%03d.pth' % (args.outf, epoch + 1))
 
                 # 每个epoch测试结果写入test_acc_loss.txt文件中
                 f.write("%03d %.3f%% %.03f" % (epoch + 1, acc, test_loss / len(test_loader)))
